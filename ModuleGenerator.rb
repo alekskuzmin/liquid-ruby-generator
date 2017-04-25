@@ -21,9 +21,9 @@ Dir[templatesFolder + '/**/*.liquid'].each do |fname|
     path = Pathname.new(File.dirname(fname))
     root  = Pathname.new(templatesFolder)
     relativePath = path.relative_path_from(root)
-    dir_name = moduleName + "/" + relativePath.to_s + "/"
+    dir_name = moduleName.downcase + "/" + relativePath.to_s + "/"
     response = FileUtils.mkdir_p(dir_name)
-    generatedFileName = "./" + dir_name + moduleName + file_name + ".java"
+    generatedFileName = "./" + dir_name + moduleName + file_name
     print "Writing it to " + generatedFileName + "...\n"
     File.open(generatedFileName, "w") {|f| f.write(renderedTemplate) }
 end
