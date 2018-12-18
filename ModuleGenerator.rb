@@ -33,13 +33,21 @@ if File.directory?(templatesFolder)
         file_name = File.basename(fname, extn)
         path = Pathname.new(File.dirname(fname))
         root  = Pathname.new(templatesFolder)
-        relativePath = path.relative_path_from(root)
-        dir_name = moduleName.downcase + "/" + relativePath.to_s + "/"
+        relativePath = path.relative_path_from(root).to_s
+        @relativePathTemplate = Liquid::Template.parse(relativePath)
+        renderedRelativePath = @relativePathTemplate.render('module_name' => moduleName)
+        renderedRelativePath = renderedRelativePath.split('-').join
+        dir_name = moduleName.downcase + "/" + renderedRelativePath + "/"
         response = FileUtils.mkdir_p(dir_name)
         @filenameTemplate = Liquid::Template.parse(file_name)
-        camelCaseFileName = @filenameTemplate.render('module_name' => moduleName)
-        camelCaseFileName = camelCaseFileName.split('-').map(&:capitalize).join
-        generatedFileName = "./" + dir_name + camelCaseFileName        
+        renderedFileName = @filenameTemplate.render('module_name' => moduleName)
+        #TODO introduce parameters to handle the individual file types differently
+        if file_name.end_with? "xml"
+            renderedFileName = renderedFileName.split('-').join('_')
+        else
+            renderedFileName = renderedFileName.split('-').map(&:capitalize).join
+        end
+        generatedFileName = "./" + dir_name + renderedFileName        
         print "Writing it to " + generatedFileName + "...\n"
         File.open(generatedFileName, "w") {|f| f.write(renderedTemplate) }
     end
