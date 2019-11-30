@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a1308c563620460c93501f69d64666fe)](https://www.codacy.com/manual/alekskuzmin/liquid-ruby-generator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alekskuzmin/liquid-ruby-generator&amp;utm_campaign=Badge_Grade)
+
 # liquid-ruby-generator
 
 ## Template-based file generator for your code and beyond
