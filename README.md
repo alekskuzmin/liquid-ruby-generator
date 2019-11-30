@@ -1,6 +1,6 @@
 # liquid-ruby-generator
 
-## Template-based file generator for your code and beyond.
+## Template-based file generator for your code and beyond
 
 Generate code modules (or any other files) with specified directory structure.
 
@@ -14,7 +14,7 @@ The output directory structure is exactly the same as the template directory str
 
 Invoke the script passing the template directory name as an argument:
 
-```
+``` bash
 ruby ModuleGenerator.rb your-module-name
 ```
 
