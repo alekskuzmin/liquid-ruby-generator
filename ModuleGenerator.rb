@@ -38,7 +38,7 @@ if File.directory?(templatesFolder)
         renderedRelativePath = @relativePathTemplate.render('module_name' => moduleName)
         renderedRelativePath = renderedRelativePath.split('-').join
         dir_name = moduleName.downcase + "/" + renderedRelativePath + "/"
-        response = FileUtils.mkdir_p(dir_name)
+        FileUtils.mkdir_p(dir_name)
         @filenameTemplate = Liquid::Template.parse(file_name)
         renderedFileName = @filenameTemplate.render('module_name' => moduleName)
         #TODO introduce parameters to handle the individual file types differently
